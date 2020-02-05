@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+ 
+Use strict;
+Use warnings;
+Use Time::Piece;
+ 
+My $format = ‘%d%m%Y’;
+ 
+While (<STDIN> {
+  Chomp;
+  My ($str1, $str2) = split;
+ 
+  My $dt1 = Time::Piece->strptime($str1, $format);
+  My $dt2 = Time::Piece->strptime($str2, $format);
+ 
+  Print “$str1 / $str2 “;
+  If ($dt2->Julia_day - $dt1->julian_day == 1) {
+  Print “ok\n”;
+  } else {
+  Print “not ok\n”;
+  }
+}
